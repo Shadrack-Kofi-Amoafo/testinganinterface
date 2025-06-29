@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Custom styles and color definitions from the main theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            padding-top: 130px; /* Space for fixed header and quick actions */
+            padding-bottom: 70px; /* Space for fixed bottom nav */
+        }
+        
+        /* Defining our custom lemon-green color to be used with Tailwind */
+        .bg-lemon-green { background-color: #39FF14; }
+        .text-lemon-green { color: #39FF14; }
+        .border-lemon-green { border-color: #39FF14; }
+        
+        /* Hover effects for lemon-green elements */
+        .hover\:bg-lemon-green-dark:hover { background-color: #28b40f; }
+
+        /* Custom scrollbar for a more integrated look (from main app) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #49515a;
+        }
+
+        /* Hide scrollbar for quick actions container */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Active/Inactive states for Navigation (re-used from main app) */
+        .nav-item.active .nav-icon,
+        .nav-item.active span {
+            @apply text-lemon-green font-bold;
+        }
+        .nav-item {
+            @apply text-gray-500 hover:text-gray-300;
+        }
+
+        /* Specific styles for dynamically loaded content container */
+        #dynamicContentContainer {
+            min-height: 200px; /* Give it some space even when empty */
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        /* Styles for main dashboard content to toggle visibility */
+        .static-dashboard-content {
+            transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+            overflow: hidden;
+        }
+        .static-dashboard-content.hidden {
+            opacity: 0;
+            max-height: 0;
+            /* Remove padding and margin so it collapses completely */
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            pointer-events: none; /* Prevent interaction when hidden */
+        }
+    </style>
+</head>
+<body class="bg-[#0d1117] text-gray-300 antialiased">
+
+    <div class="fixed top-0 left-0 right-0 z-50 bg-[#0d1117] border-b border-gray-800 flex items-center justify-between p-4">
+        <div class="text-white font-semibold text-lg">Dashboard</div>
+        <button class="w-11 h-11 bg-[#161b22] text-gray-300 rounded-md flex items-center justify-center hover:bg-gray-700 transition-colors">
+            <i class="fas fa-bell"></i>
+        </button>
+    </div>
+
+    <div class="fixed top-[72px] left-0 right-0 flex overflow-x-auto no-scrollbar p-3 bg-[#0d1117] border-b border-gray-800 z-40 gap-3">
+        <a href="#" class="action-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2" data-target-file="content/add-product.html">
+            <i class="fas fa-plus text-lemon-green"></i>
+            <span>Add Product</span>
+        </a>
+        <a href="#" class="action-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2" data-target-file="content/edit-listings.html">
+            <i class="fas fa-edit text-lemon-green"></i>
+            <span>Edit Listings</span>
+        </a>
+        <a href="#" class="action-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2" data-target-file="content/view-reports.html">
+            <i class="fas fa-chart-bar text-lemon-green"></i>
+            <span>View Reports</span>
+        </a>
+        <a href="#" class="action-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2" data-target-file="content/customers-content.html">
+            <i class="fas fa-users text-lemon-green"></i>
+            <span>Customers</span>
+        </a>
+        <a href="#" class="action-link premium-action shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2" data-target-file="content/upgrade-premium.html">
+            <i class="fas fa-crown text-yellow-400"></i>
+            <span>Upgrade to Premium</span>
+        </a>
+        <a href="#" class="action-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2" data-target-file="content/help-content.html">
+            <i class="fas fa-question-circle text-lemon-green"></i>
+            <span>Help</span>
+        </a>
+    </div>
+
+    <div class="dashboard-content p-4">
+        <div id="dynamicContentContainer" class="bg-[#161b22] rounded-lg border border-gray-800 shadow-xl mb-4 p-4">
+            </div>
+
+        <div class="static-dashboard-content" id="mainDashboardStats">
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="stat-card bg-[#161b22] rounded-lg border border-gray-800 p-4 shadow-xl">
+                    <div class="text-lemon-green text-2xl font-bold mb-1">$1,248</div>
+                    <div class="text-gray-400 text-sm">Total Sales</div>
+                </div>
+                <div class="stat-card bg-[#161b22] rounded-lg border border-gray-800 p-4 shadow-xl">
+                    <div class="text-lemon-green text-2xl font-bold mb-1">48</div>
+                    <div class="text-gray-400 text-sm">Orders</div>
+                </div>
+                <div class="stat-card bg-[#161b22] rounded-lg border border-gray-800 p-4 shadow-xl">
+                    <div class="text-lemon-green text-2xl font-bold mb-1">92%</div>
+                    <div class="text-gray-400 text-sm">Satisfaction</div>
+                </div>
+                <div class="stat-card bg-[#161b22] rounded-lg border border-gray-800 p-4 shadow-xl">
+                    <div class="text-lemon-green text-2xl font-bold mb-1">12</div>
+                    <div class="text-gray-400 text-sm">New Customers</div>
+                </div>
+            </div>
+
+            <h2 class="text-white text-lg font-semibold mt-6 mb-4">Recent Activity</h2>
+            <div class="activity-list bg-[#161b22] rounded-lg border border-gray-800 p-4 shadow-xl">
+                <div class="activity-item flex items-center py-3 border-b border-gray-800">
+                    <div class="w-10 h-10 bg-[#0d1117] rounded-full flex items-center justify-center mr-3 text-lemon-green text-lg">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-white font-medium text-sm mb-1">New order #ORD-1254</div>
+                        <div class="text-gray-500 text-xs">10 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item flex items-center py-3 border-b border-gray-800">
+                    <div class="w-10 h-10 bg-[#0d1117] rounded-full flex items-center justify-center mr-3 text-lemon-green text-lg">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-white font-medium text-sm mb-1">New customer registered</div>
+                        <div class="text-gray-500 text-xs">25 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item flex items-center py-3 border-b border-gray-800">
+                    <div class="w-10 h-10 bg-[#0d1117] rounded-full flex items-center justify-center mr-3 text-lemon-green text-lg">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-white font-medium text-sm mb-1">Order #ORD-1253 completed</div>
+                        <div class="text-gray-500 text-xs">1 hour ago</div>
+                    </div>
+                </div>
+                <div class="activity-item flex items-center py-3"> <div class="w-10 h-10 bg-[#0d1117] rounded-full flex items-center justify-center mr-3 text-lemon-green text-lg">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-white font-medium text-sm mb-1">Product restocked</div>
+                        <div class="text-gray-500 text-xs">2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 flex bg-[#161b22] border-t border-gray-800 z-50">
+        <a href="index.html" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-home nav-icon text-xl mb-1"></i>
+            <span>Home</span>
+        </a>
+        <a href="dashboard.html" class="nav-item active flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-chart-line nav-icon text-xl mb-1"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-user nav-icon text-xl mb-1"></i> 
+            <span>Profile</span>
+        </a>
+        <a href="settings.html" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-cog nav-icon text-xl mb-1"></i> 
+            <span>Settings</span>
+        </a>
+    </div>
+
+    <script>
+        // --- COMMON THEME STYLING LOGIC (re-used from index.html) ---
+        const activeNavClasses = ['text-lemon-green', 'font-bold'];
+        const inactiveNavClasses = ['text-gray-500', 'hover:text-gray-300'];
+
+        // Custom message box function (reused with Tailwind classes)
+        function showMessage(message) {
+            const messageBox = document.createElement('div');
+            messageBox.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#161b22] text-white py-3 px-6 rounded-lg border border-gray-700 shadow-xl z-[1000] text-center text-sm font-medium opacity-0 transition-opacity duration-300';
+            messageBox.textContent = message;
+            document.body.appendChild(messageBox);
+
+            setTimeout(() => {
+                messageBox.style.opacity = 1;
+            }, 10);
+
+            setTimeout(() => {
+                messageBox.style.opacity = 0;
+                messageBox.addEventListener('transitionend', () => messageBox.remove());
+            }, 2000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainDashboardStats = document.getElementById('mainDashboardStats');
+            const quickActionLinks = document.querySelectorAll('.quick-actions .action-link');
+            const dynamicContentContainer = document.getElementById('dynamicContentContainer');
+
+            // --- BOTTOM NAV SELECTION ---
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Only prevent default if href is '#' to allow actual page navigation
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    // Remove active styles from all
+                    navItems.forEach(nav => {
+                        nav.classList.remove(...activeNavClasses);
+                        nav.classList.add(...inactiveNavClasses);
+                    });
+                    // Add active styles to the clicked one
+                    this.classList.add(...activeNavClasses);
+                    this.classList.remove(...inactiveNavClasses);
+                });
+            });
+            // Set initial state for nav (based on current page)
+            const currentPage = window.location.pathname.split('/').pop();
+            navItems.forEach(nav => {
+                if (nav.getAttribute('href') === currentPage || (currentPage === '' && nav.getAttribute('href') === 'index.html')) {
+                    nav.classList.add(...activeNavClasses);
+                    nav.classList.remove(...inactiveNavClasses);
+                } else {
+                     nav.classList.add(...inactiveNavClasses);
+                     nav.classList.remove(...activeNavClasses);
+                }
+            });
+
+            // Notification icon click
+            document.querySelector('.header button').addEventListener('click', function() {
+                showMessage('Notifications will appear here');
+            });
+
+            // --- QUICK ACTION LINKS LOGIC ---
+            let currentActiveLink = null;
+
+            quickActionLinks.forEach(link => {
+                link.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    const targetFile = this.dataset.targetFile;
+
+                    // If the clicked link is already active, close it
+                    if (currentActiveLink === this) {
+                        currentActiveLink = null;
+                        dynamicContentContainer.innerHTML = ''; // Clear content
+                        dynamicContentContainer.classList.remove('p-4'); // Remove padding if not needed when empty
+                        mainDashboardStats.classList.remove('hidden'); // Show main dashboard stats
+                        
+                        // Deactivate current link styling
+                        this.classList.remove('bg-lemon-green', 'text-black', 'hover:bg-lemon-green-dark');
+                        this.classList.add('bg-gray-800', 'text-gray-400', 'hover:bg-gray-700');
+                        if (!this.classList.contains('premium-action')) {
+                            this.querySelector('i').classList.remove('text-black');
+                            this.querySelector('i').classList.add('text-lemon-green');
+                        } else {
+                            this.classList.remove('bg-lemon-green', 'text-black'); // Remove lemon-green from premium itself
+                            this.classList.add('bg-yellow-500', 'text-black', 'hover:bg-yellow-400'); // Re-apply yellow background
+                            this.querySelector('.fa-crown').classList.remove('text-black'); // Ensure crown is yellow
+                            this.querySelector('.fa-crown').classList.add('text-yellow-400');
+                        }
+                        return; // Exit
+                    }
+
+                    // Deactivate previously active link
+                    if (currentActiveLink) {
+                        currentActiveLink.classList.remove('bg-lemon-green', 'text-black', 'hover:bg-lemon-green-dark');
+                        currentActiveLink.classList.add('bg-gray-800', 'text-gray-400', 'hover:bg-gray-700');
+                        if (!currentActiveLink.classList.contains('premium-action')) {
+                            currentActiveLink.querySelector('i').classList.remove('text-black');
+                            currentActiveLink.querySelector('i').classList.add('text-lemon-green');
+                        } else {
+                            currentActiveLink.classList.remove('bg-lemon-green', 'text-black'); // Remove lemon-green from premium itself
+                            currentActiveLink.classList.add('bg-yellow-500', 'text-black', 'hover:bg-yellow-400'); // Re-apply yellow background
+                            currentActiveLink.querySelector('.fa-crown').classList.remove('text-black'); // Ensure crown is yellow
+                            currentActiveLink.querySelector('.fa-crown').classList.add('text-yellow-400');
+                        }
+                    }
+
+                    // Set new active link
+                    currentActiveLink = this;
+                    this.classList.remove('bg-gray-800', 'text-gray-400', 'hover:bg-gray-700');
+                    this.classList.add('bg-lemon-green', 'text-black', 'hover:bg-lemon-green-dark');
+
+                    // Special handling for the premium action link's crown icon
+                    if (this.classList.contains('premium-action')) {
+                        this.classList.remove('bg-lemon-green', 'text-black'); // Remove lemon-green from premium itself
+                        this.classList.add('bg-yellow-500', 'text-black', 'hover:bg-yellow-400'); // Re-apply yellow background
+                        this.querySelector('.fa-crown').classList.remove('text-yellow-400');
+                        this.querySelector('.fa-crown').classList.add('text-black'); // Make crown black when active
+                    } else {
+                        this.querySelector('i').classList.remove('text-lemon-green');
+                        this.querySelector('i').classList.add('text-black');
+                    }
+
+                    mainDashboardStats.classList.add('hidden'); // Hide main dashboard stats
+                    dynamicContentContainer.classList.add('p-4'); // Ensure padding is applied
+
+                    try {
+                        const response = await fetch(targetFile);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        const html = await response.text();
+                        dynamicContentContainer.innerHTML = html;
+
+                        // Re-attach event listeners to newly loaded content
+                        attachDynamicContentListeners();
+
+                    } catch (error) {
+                        console.error('Failed to load content:', error);
+                        dynamicContentContainer.innerHTML = `<p class="text-red-500 text-sm">Error loading content. Please try again.</p>`;
+                    }
+                });
+            });
+
+            // Function to attach listeners to dynamically loaded content
+            function attachDynamicContentListeners() {
+                // Re-attach form submission listeners
+                document.querySelectorAll('#dynamicContentContainer .product-form').forEach(form => {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        showMessage('Form submitted successfully!');
+                        // In a real app, you'd send data to a server and clear the form.
+                        form.reset();
+                        // Optionally close the dynamic content and show main stats
+                        dynamicContentContainer.innerHTML = '';
+                        dynamicContentContainer.classList.remove('p-4');
+                        mainDashboardStats.classList.remove('hidden');
+                        
+                        // Reset active link styling
+                        if (currentActiveLink) {
+                            currentActiveLink.classList.remove('bg-lemon-green', 'text-black', 'hover:bg-lemon-green-dark');
+                            currentActiveLink.classList.add('bg-gray-800', 'text-gray-400', 'hover:bg-gray-700');
+                            if (!currentActiveLink.classList.contains('premium-action')) {
+                                currentActiveLink.querySelector('i').classList.remove('text-black');
+                                currentActiveLink.querySelector('i').classList.add('text-lemon-green');
+                            } else {
+                                currentActiveLink.classList.remove('bg-lemon-green', 'text-black'); 
+                                currentActiveLink.classList.add('bg-yellow-500', 'text-black', 'hover:bg-yellow-400'); 
+                                currentActiveLink.querySelector('.fa-crown').classList.remove('text-black'); 
+                                currentActiveLink.querySelector('.fa-crown').classList.add('text-yellow-400');
+                            }
+                            currentActiveLink = null;
+                        }
+                    });
+                });
+
+                // Re-attach generic button listeners (e.g., "Generate Sales Report")
+                document.querySelectorAll('#dynamicContentContainer button:not([type="submit"])').forEach(button => {
+                    button.addEventListener('click', function() {
+                        showMessage(`Action: ${this.textContent} initiated!`);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
