@@ -85,7 +85,9 @@
     </div>
 
     <!-- Products Grid -->
-    <div class="grid grid-cols-2 gap-4 p-4">
+    <!-- Changed 'p-4' to 'px-2 py-4' to reduce horizontal padding and increase card width -->
+    <!-- Changed 'gap-4' to 'gap-2' to reduce horizontal space between cards -->
+    <div class="grid grid-cols-2 gap-2 px-2 py-4">
         <!-- Product Card 1 -->
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col relative">
             <div class="premium-badge absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
@@ -104,12 +106,12 @@
 
         <!-- Product Card 2 -->
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col relative">
-             <div class="premium-badge absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+            <div class="premium-badge absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
                 <i class="fas fa-check-circle text-xs"></i>
                 <span>Verified</span>
             </div>
             <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
-                 <i class="fas fa-camera text-3xl"></i>
+                <i class="fas fa-camera text-3xl"></i>
             </div>
             <div class="p-3 flex flex-col flex-grow">
                 <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Smartwatch X200</h3>
@@ -121,22 +123,24 @@
         <!-- Product Card 3 -->
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
             <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
-                 <i class="fas fa-camera text-3xl"></i>
+                <i class="fas fa-camera text-3xl"></i>
             </div>
             <div class="p-3 flex flex-col flex-grow">
                 <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Ergonomic Office Chair</h3>
                 <p class="product-price text-lemon-green font-bold text-lg mb-3">$199.99</p>
+                <button class="buy-button mt-auto w-full bg-gray-800 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">Visit Store</button>
             </div>
         </div>
 
         <!-- Product Card 4 -->
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
             <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
-                 <i class="fas fa-camera text-3xl"></i>
+                <i class="fas fa-camera text-3xl"></i>
             </div>
             <div class="p-3 flex flex-col flex-grow">
                 <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Organic Green Tea Pack</h3>
                 <p class="product-price text-lemon-green font-bold text-lg mb-3">$12.75</p>
+                <button class="buy-button mt-auto w-full bg-gray-800 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">Visit Store</button>
             </div>
         </div>
 
