@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile E-Commerce App - Dark Theme</title>
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -61,9 +58,7 @@
 </head>
 <body class="bg-[#0d1117] text-gray-300 antialiased">
 
-    <!-- Header & Categories Container -->
     <div class="fixed top-0 left-0 right-0 z-50 bg-[#0d1117] border-b border-gray-800">
-        <!-- Search Header -->
         <div class="flex items-center gap-3 p-4">
             <input type="text" placeholder="Search products..." class="w-full bg-[#161b22] border border-gray-700 rounded-md py-2 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lemon-green focus:border-transparent transition">
             <button class="search-button shrink-0 w-11 h-11 bg-lemon-green text-black rounded-md flex items-center justify-center hover:bg-lemon-green-dark transition-colors">
@@ -71,7 +66,6 @@
             </button>
         </div>
 
-        <!-- Categories -->
         <div class="categories-container p-4 pt-0 overflow-x-auto no-scrollbar">
             <nav class="flex gap-3">
                 <a href="#" class="category-link active shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors">All</a>
@@ -84,11 +78,7 @@
         </div>
     </div>
 
-    <!-- Products Grid -->
-    <!-- Changed 'p-4' to 'px-2 py-4' to reduce horizontal padding and increase card width -->
-    <!-- Changed 'gap-4' to 'gap-2' to reduce horizontal space between cards -->
     <div class="grid grid-cols-2 gap-2 px-2 py-4">
-        <!-- Product Card 1 -->
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col relative">
             <div class="premium-badge absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
                 <i class="fas fa-check-circle text-xs"></i>
@@ -104,7 +94,6 @@
             </div>
         </div>
 
-        <!-- Product Card 2 -->
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col relative">
             <div class="premium-badge absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
                 <i class="fas fa-check-circle text-xs"></i>
@@ -120,7 +109,6 @@
             </div>
         </div>
         
-        <!-- Product Card 3 -->
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
             <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
                 <i class="fas fa-camera text-3xl"></i>
@@ -128,11 +116,29 @@
             <div class="p-3 flex flex-col flex-grow">
                 <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Ergonomic Office Chair</h3>
                 <p class="product-price text-lemon-green font-bold text-lg mb-3">$199.99</p>
-                <button class="buy-button mt-auto w-full bg-gray-800 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">Visit Store</button>
-            </div>
+                </div>
         </div>
 
-        <!-- Product Card 4 -->
+        <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
+            <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
+                <i class="fas fa-camera text-3xl"></i>
+            </div>
+            <div class="p-3 flex flex-col flex-grow">
+                <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Ergonomic Office Chair</h3>
+                <p class="product-price text-lemon-green font-bold text-lg mb-3">$199.99</p>
+                </div>
+        </div>
+
+        <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
+            <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
+                <i class="fas fa-camera text-3xl"></i>
+            </div>
+            <div class="p-3 flex flex-col flex-grow">
+                <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Ergonomic Office Chair</h3>
+                <p class="product-price text-lemon-green font-bold text-lg mb-3">$199.99</p>
+                </div>
+        </div>
+
         <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
             <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
                 <i class="fas fa-camera text-3xl"></i>
@@ -140,20 +146,17 @@
             <div class="p-3 flex flex-col flex-grow">
                 <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Organic Green Tea Pack</h3>
                 <p class="product-price text-lemon-green font-bold text-lg mb-3">$12.75</p>
-                <button class="buy-button mt-auto w-full bg-gray-800 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">Visit Store</button>
-            </div>
+                </div>
         </div>
 
-        <!-- Add more cards as needed -->
-    </div>
+        </div>
 
-    <!-- Bottom Navigation -->
     <div class="fixed bottom-0 left-0 right-0 flex bg-[#161b22] border-t border-gray-800 z-50">
         <a href="#" class="nav-item active flex-1 flex flex-col items-center py-2 text-xs">
             <i class="fas fa-home nav-icon text-xl mb-1"></i>
             <span>Home</span>
         </a>
-        <a href="#" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+        <a href="myDashboard.html" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
             <i class="fas fa-chart-line nav-icon text-xl mb-1"></i>
             <span>Dashboard</span>
         </a>
@@ -161,7 +164,7 @@
             <i class="fas fa-user nav-icon text-xl mb-1"></i>
             <span>Profile</span>
         </a>
-        <a href="#" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+        <a href="settings.html" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
             <i class="fas fa-cog nav-icon text-xl mb-1"></i>
             <span>Settings</span>
         </a>
@@ -198,7 +201,12 @@
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
-                e.preventDefault();
+                // Prevent default behavior only if the link is '#'
+                // This allows actual navigation for 'settings.html'
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                
                 // Remove active styles from all
                 navItems.forEach(nav => {
                     nav.classList.remove(...activeNavClasses);
@@ -209,9 +217,19 @@
                 this.classList.remove(...inactiveNavClasses);
             });
         });
-        // Set initial state for nav
-        document.querySelector('.nav-item.active').classList.add(...activeNavClasses);
-        document.querySelectorAll('.nav-item:not(.active)').forEach(nav => nav.classList.add(...inactiveNavClasses));
+        // Set initial state for nav (based on current page)
+        // This is important to ensure 'Home' is active when on index.html
+        const currentPage = window.location.pathname.split('/').pop();
+        navItems.forEach(nav => {
+            // Check if href matches current page, or if it's the home page and current page is empty
+            if (nav.getAttribute('href') === currentPage || (currentPage === '' && nav.getAttribute('href') === '#')) {
+                nav.classList.add(...activeNavClasses);
+                nav.classList.remove(...inactiveNavClasses);
+            } else {
+                 nav.classList.add(...inactiveNavClasses);
+                 nav.classList.remove(...activeNavClasses);
+            }
+        });
 
 
         // --- NOTIFICATION/MESSAGE BOX LOGIC ---
