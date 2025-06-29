@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile E-Commerce App - Dark Theme</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Custom styles and color definitions from the theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Set a fixed height for the body to contain the app view */
+            padding-top: 130px; /* Space for fixed header and categories */
+            padding-bottom: 70px; /* Space for fixed bottom nav */
+        }
+        
+        /* Defining our custom lemon-green color to be used with Tailwind */
+        .bg-lemon-green { background-color: #39FF14; }
+        .text-lemon-green { color: #39FF14; }
+        .border-lemon-green { border-color: #39FF14; }
+        
+        /* Hover effects for lemon-green elements */
+        .hover\:bg-lemon-green-dark:hover { background-color: #28b40f; }
+
+        /* Custom scrollbar for a more integrated look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #49515a;
+        }
+
+        /* Hide scrollbar for category container */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-[#0d1117] text-gray-300 antialiased">
+
+    <!-- Header & Categories Container -->
+    <div class="fixed top-0 left-0 right-0 z-50 bg-[#0d1117] border-b border-gray-800">
+        <!-- Search Header -->
+        <div class="flex items-center gap-3 p-4">
+            <input type="text" placeholder="Search products..." class="w-full bg-[#161b22] border border-gray-700 rounded-md py-2 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lemon-green focus:border-transparent transition">
+            <button class="search-button shrink-0 w-11 h-11 bg-lemon-green text-black rounded-md flex items-center justify-center hover:bg-lemon-green-dark transition-colors">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories-container p-4 pt-0 overflow-x-auto no-scrollbar">
+            <nav class="flex gap-3">
+                <a href="#" class="category-link active shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors">All</a>
+                <a href="#" class="category-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors">Education</a>
+                <a href="#" class="category-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors">Electronics</a>
+                <a href="#" class="category-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors">Food & Drinks</a>
+                <a href="#" class="category-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors">Fashion</a>
+                <a href="#" class="category-link shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors">Health & Beauty</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-2 gap-4 p-4">
+        <!-- Product Card 1 -->
+        <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col relative">
+            <div class="premium-badge absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                <i class="fas fa-check-circle text-xs"></i>
+                <span>Verified</span>
+            </div>
+            <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
+                <i class="fas fa-camera text-3xl"></i>
+            </div>
+            <div class="p-3 flex flex-col flex-grow">
+                <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Wireless Headphones</h3>
+                <p class="product-price text-lemon-green font-bold text-lg mb-3">$59.99</p>
+                <button class="buy-button mt-auto w-full bg-gray-800 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">Visit Store</button>
+            </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col relative">
+             <div class="premium-badge absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                <i class="fas fa-check-circle text-xs"></i>
+                <span>Verified</span>
+            </div>
+            <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
+                 <i class="fas fa-camera text-3xl"></i>
+            </div>
+            <div class="p-3 flex flex-col flex-grow">
+                <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Smartwatch X200</h3>
+                <p class="product-price text-lemon-green font-bold text-lg mb-3">$129.00</p>
+                <button class="buy-button mt-auto w-full bg-gray-800 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">Visit Store</button>
+            </div>
+        </div>
+        
+        <!-- Product Card 3 -->
+        <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
+            <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
+                 <i class="fas fa-camera text-3xl"></i>
+            </div>
+            <div class="p-3 flex flex-col flex-grow">
+                <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Ergonomic Office Chair</h3>
+                <p class="product-price text-lemon-green font-bold text-lg mb-3">$199.99</p>
+            </div>
+        </div>
+
+        <!-- Product Card 4 -->
+        <div class="product-card bg-[#161b22] rounded-lg border border-gray-800 overflow-hidden flex flex-col">
+            <div class="h-36 bg-[#0d1117] flex items-center justify-center text-gray-500">
+                 <i class="fas fa-camera text-3xl"></i>
+            </div>
+            <div class="p-3 flex flex-col flex-grow">
+                <h3 class="product-name text-white font-semibold text-sm mb-2 h-10 overflow-hidden">Organic Green Tea Pack</h3>
+                <p class="product-price text-lemon-green font-bold text-lg mb-3">$12.75</p>
+            </div>
+        </div>
+
+        <!-- Add more cards as needed -->
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 flex bg-[#161b22] border-t border-gray-800 z-50">
+        <a href="#" class="nav-item active flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-home nav-icon text-xl mb-1"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-chart-line nav-icon text-xl mb-1"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-user nav-icon text-xl mb-1"></i>
+            <span>Profile</span>
+        </a>
+        <a href="#" class="nav-item flex-1 flex flex-col items-center py-2 text-xs">
+            <i class="fas fa-cog nav-icon text-xl mb-1"></i>
+            <span>Settings</span>
+        </a>
+    </div>
+
+    <script>
+        // --- THEME STYLING LOGIC ---
+        const activeCategoryClasses = ['bg-lemon-green', 'text-black'];
+        const inactiveCategoryClasses = ['bg-gray-800', 'text-gray-400', 'hover:bg-gray-700'];
+        const activeNavClasses = ['text-lemon-green', 'font-bold'];
+        const inactiveNavClasses = ['text-gray-500', 'hover:text-gray-300'];
+
+        // --- CATEGORY SELECTION ---
+        const categoryLinks = document.querySelectorAll('.category-link');
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active styles from all
+                categoryLinks.forEach(l => {
+                    l.classList.remove(...activeCategoryClasses);
+                    l.classList.add(...inactiveCategoryClasses);
+                });
+                // Add active styles to the clicked one
+                this.classList.add(...activeCategoryClasses);
+                this.classList.remove(...inactiveCategoryClasses);
+            });
+        });
+        // Set initial state for categories
+        document.querySelector('.category-link.active').classList.add(...activeCategoryClasses);
+        document.querySelectorAll('.category-link:not(.active)').forEach(l => l.classList.add(...inactiveCategoryClasses));
+
+
+        // --- BOTTOM NAV SELECTION ---
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active styles from all
+                navItems.forEach(nav => {
+                    nav.classList.remove(...activeNavClasses);
+                    nav.classList.add(...inactiveNavClasses);
+                });
+                // Add active styles to the clicked one
+                this.classList.add(...activeNavClasses);
+                this.classList.remove(...inactiveNavClasses);
+            });
+        });
+        // Set initial state for nav
+        document.querySelector('.nav-item.active').classList.add(...activeNavClasses);
+        document.querySelectorAll('.nav-item:not(.active)').forEach(nav => nav.classList.add(...inactiveNavClasses));
+
+
+        // --- NOTIFICATION/MESSAGE BOX LOGIC ---
+        function showMessage(message) {
+            const messageBox = document.createElement('div');
+            // Use Tailwind classes for styling the message box
+            messageBox.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#161b22] text-white py-3 px-6 rounded-lg border border-gray-700 shadow-xl z-[1000] text-center text-sm font-medium opacity-0 transition-opacity duration-300';
+            messageBox.textContent = message;
+            document.body.appendChild(messageBox);
+
+            // Fade in
+            setTimeout(() => {
+                messageBox.style.opacity = 1;
+            }, 10);
+
+            // Fade out and remove
+            setTimeout(() => {
+                messageBox.style.opacity = 0;
+                messageBox.addEventListener('transitionend', () => messageBox.remove());
+            }, 2000);
+        }
+
+        // --- SEARCH FUNCTIONALITY ---
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const query = document.querySelector('input[type="text"]').value;
+            if (query) {
+                showMessage(`Searching for: ${query}`);
+            } else {
+                showMessage(`Please enter a search term.`);
+            }
+        });
+
+        // --- BUY BUTTON FUNCTIONALITY ---
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                const buttonText = this.textContent;
+                let message = '';
+                if (buttonText === 'Add to Cart') {
+                    message = `Added ${productName} to cart!`;
+                } else if (buttonText === 'Visit Store') {
+                    message = `Redirecting to store for ${productName}!`;
+                }
+                showMessage(message);
+            });
+        });
+    </script>
+</body>
+</html>
